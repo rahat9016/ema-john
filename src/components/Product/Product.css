@@ -1,0 +1,21 @@
+.product{
+    display: flex;
+    border-bottom: 1px solid lightgray;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+.product-img{
+    margin-right: 15px;
+}
+.product-heading{
+    color:blue;
+
+}
+.product-shoping-cart{
+    background-color: goldenrod;
+    width: 150px;
+    height: 35px;
+    border: 1px solid #a88734;
+    border-radius: 5px;
+}
