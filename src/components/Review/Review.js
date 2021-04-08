@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import fakeData from '../../fakeData';
 import ReviewItems from '../../ReviewItems/ReviewItems';
 import { getDatabaseCart, removeFromDatabaseCart, processOrder } from '../../utilities/databaseManager';
 import Cart from '../Cart/Cart';
@@ -23,12 +22,16 @@ const Review = () => {
     useEffect(()=>{
         const savaData = getDatabaseCart()
         const productKeys = Object.keys(savaData)
-        const counts = productKeys.map(key => {
-            const product = fakeData.find(pd => pd.key === key)
-            product.quantity = savaData[key]
-            return product
+        fetch('https://aqueous-depths-72380.herokuapp.com/productsBykeys',{
+            method:'POST',
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(productKeys)
         })
-        setCart(counts)
+        .then(res => res.json())
+        .then(data => setCart(data))
+
     },[])
     let orderConfirm;
     if(orderPlaced){
